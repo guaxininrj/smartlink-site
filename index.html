@@ -174,7 +174,10 @@
   @media (max-width:640px){
     .logo-wrap{width:175px;height:175px}
     header h1{font-size:1.3rem}
-    nav a{font-size:.72rem;padding:8px 11px;border-radius:9px}
+    nav{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;
+      -webkit-overflow-scrolling:touch;scrollbar-width:none;padding:10px 12px}
+    nav::-webkit-scrollbar{display:none}
+    nav a{flex-shrink:0;white-space:nowrap;font-size:.74rem;padding:8px 13px;border-radius:9px}
     section{padding:50px 16px 6px}
     .fz,.plano,.passo{width:100%;max-width:360px}
     .tabela td:nth-child(2){display:none}
