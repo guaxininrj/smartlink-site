@@ -29,7 +29,11 @@
     padding:12px 16px;background:rgba(8,8,9,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
     border-bottom:1px solid rgba(255,30,45,.35);box-shadow:0 6px 24px rgba(0,0,0,.6)}
   nav a{color:var(--verm-vivo);text-decoration:none;font-weight:700;font-size:.85rem;letter-spacing:.1em;
-    text-transform:uppercase;padding:7px 14px;border-radius:8px;transition:.25s;text-shadow:0 0 12px rgba(255,30,45,.35)}
+    text-transform:uppercase;padding:8px 16px;border-radius:10px;transition:.25s;text-shadow:0 0 12px rgba(255,30,45,.35);
+    background:linear-gradient(180deg,rgba(255,30,45,.14),rgba(255,30,45,.05));
+    border:1px solid rgba(255,30,45,.5);
+    box-shadow:0 3px 10px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.07)}
+  nav a:active{transform:translateY(1px)}
   nav a:hover{color:#fff;background:linear-gradient(180deg,rgba(255,30,45,.22),rgba(255,30,45,.08));
     box-shadow:0 0 18px rgba(255,30,45,.35), inset 0 0 0 1px rgba(255,30,45,.5)}
 
@@ -170,7 +174,7 @@
   @media (max-width:640px){
     .logo-wrap{width:175px;height:175px}
     header h1{font-size:1.3rem}
-    nav a{font-size:.72rem;padding:6px 9px}
+    nav a{font-size:.72rem;padding:8px 11px;border-radius:9px}
     section{padding:50px 16px 6px}
     .fz,.plano,.passo{width:100%;max-width:360px}
     .tabela td:nth-child(2){display:none}
