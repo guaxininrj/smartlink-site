@@ -202,9 +202,12 @@
   /* ===== PARCEIROS ===== */
   .parceiros{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;max-width:900px;margin:0 auto}
   .parceiro{width:190px;height:190px;background:var(--card);border:1px solid rgba(255,30,45,.5);
-    border-radius:16px;position:relative;display:flex;align-items:center;justify-content:center;
+    border-radius:16px;position:relative;display:flex;flex-direction:column;gap:10px;
+    align-items:center;justify-content:center;
     box-shadow:0 0 18px rgba(255,30,45,.18),0 12px 30px rgba(0,0,0,.55)}
-  .parceiro img{max-width:76%;max-height:76%;object-fit:contain;border-radius:8px}
+  .parceiro img{max-width:62%;max-height:62%;object-fit:contain}
+  .parceiro .nome{color:#fff;font-weight:700;letter-spacing:.3em;font-size:.85rem;text-transform:uppercase;
+    text-shadow:0 0 10px rgba(255,30,45,.4)}
   .parceiro p{color:var(--cinza);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;text-align:center;padding:0 10px}
   .parceiro .glass{inset:0;border-radius:16px}
 
@@ -409,7 +412,7 @@
   <h2>Parceiros</h2>
   <p class="sub">Empresas que confiam na SMART LINK.</p>
   <div class="parceiros">
-    <div class="parceiro"><span class="neon"></span><span class="glass"></span><p>Em breve</p></div>
+    <div class="parceiro"><span class="neon"></span><span class="glass"></span><img src="parceiro-tssk.png" alt="TSSK"><span class="nome">TSSK</span></div>
     <div class="parceiro"><span class="neon"></span><span class="glass"></span><p>Em breve</p></div>
     <div class="parceiro"><span class="neon"></span><span class="glass"></span><p>Em breve</p></div>
   </div>
