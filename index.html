@@ -141,7 +141,7 @@
   .nota{text-align:center;color:var(--cinza);font-size:.85rem;margin-top:26px}
 
   .coluna-plano{display:flex;flex-direction:column;gap:24px;width:300px}
-  .planos .plano{min-height:312px;display:flex;flex-direction:column}
+  .planos .plano{display:flex;flex-direction:column}
   .planos .plano ul{flex:1}
   .coluna-plano .plano{width:100%}
   .planos{align-items:flex-start}
@@ -412,6 +412,17 @@ if(m&&h){m.addEventListener('scroll',function(){h.style.display='none';},{once:t
     if(v && id!=='fazemos') v.pause();
     window.scrollTo(0,0);
   }
+  function alinhaPlanos(){
+    var cs=document.querySelectorAll('.planos .plano');
+    var m=0;
+    cs.forEach(function(c){c.style.height='auto';});
+    if(window.innerWidth<=640) return;
+    cs.forEach(function(c){ if(c.offsetHeight>m) m=c.offsetHeight; });
+    if(m>0) cs.forEach(function(c){c.style.height=m+'px';});
+  }
+  var _m=mostrar;
+  mostrar=function(id){_m(id); if((location.hash.slice(1)||'inicio')==='planos') setTimeout(alinhaPlanos,50);};
+  window.addEventListener('resize',alinhaPlanos);
   window.addEventListener('hashchange',function(){mostrar(location.hash.slice(1));});
   mostrar(location.hash.slice(1));
 })();
