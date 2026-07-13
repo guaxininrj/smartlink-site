@@ -143,11 +143,10 @@
   .coluna-plano{display:flex;flex-direction:column;gap:24px;width:300px}
   .coluna-plano .plano{width:100%}
   .planos{align-items:flex-start}
-  .plano-video{width:100%;background:var(--card);border:1px solid rgba(255,30,45,.55);border-radius:18px;
-    padding:14px 12px 12px;position:relative;text-align:center;
+  .plano-video{width:100%;height:452px;background:var(--card);border:1px solid rgba(255,30,45,.55);border-radius:18px;
+    padding:10px;position:relative;
     box-shadow:0 0 22px rgba(255,30,45,.15),0 18px 40px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,255,255,.08)}
-  .plano-video p{color:var(--verm-vivo);font-size:.85rem;font-weight:700;letter-spacing:.05em;margin-bottom:10px}
-  .plano-video video{width:100%;border-radius:12px;display:block}
+  .plano-video video{width:100%;height:100%;object-fit:cover;object-position:center;border-radius:12px;display:block}
   @media (max-width:640px){.coluna-plano{width:100%;max-width:360px}}
 
   /* ===== TABELA AVULSOS ===== */
@@ -300,7 +299,6 @@
     </div>
     <div class="plano-video">
       <span class="neon"></span>
-      <p>&#9654; ENTENDA O PLANO START EM 30s</p>
       <video src="video-start.mp4" controls playsinline preload="metadata"></video>
     </div>
     </div>
