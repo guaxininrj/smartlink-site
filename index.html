@@ -24,6 +24,14 @@
   h2{color:var(--verm-vivo);font-size:1.5rem;letter-spacing:.06em;margin-bottom:8px;text-transform:uppercase}
   .sub{color:var(--cinza);font-size:.95rem;margin-bottom:34px}
 
+
+  /* ===== PÁGINAS (uma por aba do menu) ===== */
+  .pagina{display:none}
+  section.pagina.ativa{display:block}
+  header.pagina.ativa{display:flex}
+  nav a.ativo{color:#fff;background:linear-gradient(180deg,rgba(255,30,45,.30),rgba(255,30,45,.12));
+    box-shadow:0 0 18px rgba(255,30,45,.45), inset 0 0 0 1px rgba(255,30,45,.7)}
+
   /* ===== MENU ===== */
   .navwrap{position:sticky;top:0;z-index:100;overflow:hidden;
     background:rgba(8,8,9,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
@@ -40,15 +48,16 @@
     box-shadow:0 0 18px rgba(255,30,45,.35), inset 0 0 0 1px rgba(255,30,45,.5)}
 
   /* ===== HERO ===== */
-  header{display:flex;flex-direction:column;align-items:center;text-align:center;padding:52px 20px 8px}
-  .logo-wrap{width:230px;height:230px;border-radius:50%;position:relative;overflow:visible;
+  header{display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:24px 20px 60px;min-height:calc(100vh - 64px)}
+  .logo-wrap{width:min(320px,62vw);height:min(320px,62vw);border-radius:50%;position:relative;overflow:visible;
     display:flex;align-items:center;justify-content:center;
     background:radial-gradient(circle at 35% 30%, #2a2a2e, #0c0c0e 70%);border:3px solid #1d1d20;
     box-shadow:0 0 0 4px rgba(255,30,45,.9),0 0 40px rgba(255,30,45,.35),0 20px 50px rgba(0,0,0,.8),inset 0 0 30px rgba(0,0,0,.7)}
   .logo-wrap img{width:100%;height:100%;object-fit:cover;border-radius:50%}
-  header .slogan{margin-top:22px;color:var(--cinza);font-size:.9rem;letter-spacing:.3em;text-transform:uppercase}
+  header .slogan{margin-top:28px;font-size:1rem;color:var(--cinza);font-size:.9rem;letter-spacing:.3em;text-transform:uppercase}
   header .slogan b{color:var(--verm-vivo)}
-  header h1{margin-top:18px;font-size:1.7rem;color:#fff;font-weight:800;max-width:640px;line-height:1.35}
+  header h1{margin-top:24px;font-size:2.1rem;color:#fff;font-weight:800;max-width:640px;line-height:1.35}
   header p.frase{margin-top:10px;color:var(--cinza);font-size:1rem;max-width:560px}
 
   /* ===== NEON / VIDRO ===== */
@@ -188,8 +197,8 @@
   .zap-flut svg{width:32px;height:32px;fill:#fff}
 
   @media (max-width:640px){
-    .logo-wrap{width:175px;height:175px}
-    header h1{font-size:1.3rem}
+    header{min-height:calc(100vh - 56px);min-height:calc(100dvh - 56px)}
+    header h1{font-size:1.45rem}
     nav{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;
       -webkit-overflow-scrolling:touch;scrollbar-width:none;padding:10px 40px 10px 12px}
     nav::-webkit-scrollbar{display:none}
@@ -222,7 +231,7 @@
 <span class="nav-hint">&#10095;</span>
 </div>
 
-<header id="inicio">
+<header id="inicio" class="pagina">
   <div class="logo-wrap">
     <span class="neon neon-logo"></span>
     <span class="glass glass-logo"></span>
@@ -233,7 +242,7 @@
   <p class="frase">Sem complicação e cabendo no seu bolso.</p>
 </header>
 
-<section id="fazemos">
+<section id="fazemos" class="pagina">
   <h2>O que fazemos</h2>
   <p class="sub">Três soluções que trabalham juntas para fazer seu negócio vender mais.</p>
   <div class="video-wrap">
@@ -259,7 +268,7 @@
   </div>
 </section>
 
-<section id="planos">
+<section id="planos" class="pagina">
   <h2>Planos mensais</h2>
   <p class="sub">Presença digital completa por assinatura — sem investimento pesado de entrada.</p>
   <div class="planos">
@@ -319,7 +328,7 @@
   </div>
 </section>
 
-<section id="avulsos">
+<section id="avulsos" class="pagina">
   <h2>Produtos avulsos — valor fechado</h2>
   <p class="sub">Prefere pagar uma vez só? Soluções entregues prontas, com garantia e treinamento.</p>
   <table class="tabela">
@@ -338,7 +347,7 @@
   </div>
 </section>
 
-<section id="como">
+<section id="como" class="pagina">
   <h2>Como funciona</h2>
   <p class="sub">Do primeiro contato à entrega, sem surpresa.</p>
   <div class="passos">
@@ -349,7 +358,7 @@
   </div>
 </section>
 
-<section id="contato" class="cta">
+<section id="contato" class="pagina cta">
   <h2>Vamos colocar seu negócio no digital?</h2>
   <p>Orçamento gratuito e sem compromisso — resposta no mesmo dia.</p>
   <a class="btn-zap" href="https://wa.me/5521975312753?text=Ol%C3%A1!%20Vi%20o%20site%20da%20SMART%20LINK%20e%20quero%20um%20or%C3%A7amento." target="_blank" rel="noopener">
@@ -365,6 +374,24 @@
 <script>
 (function(){var m=document.getElementById('menu'),h=document.querySelector('.nav-hint');
 if(m&&h){m.addEventListener('scroll',function(){h.style.display='none';},{once:true});}})();
+</script>
+<script>
+(function(){
+  var ids=['inicio','fazemos','planos','avulsos','como','contato'];
+  function mostrar(id){
+    if(ids.indexOf(id)<0) id='inicio';
+    document.querySelectorAll('.pagina').forEach(function(s){s.classList.remove('ativa');});
+    document.getElementById(id).classList.add('ativa');
+    document.querySelectorAll('nav a').forEach(function(a){
+      a.classList.toggle('ativo', a.getAttribute('href')==='#'+id);
+    });
+    var v=document.querySelector('#fazemos video');
+    if(v && id!=='fazemos') v.pause();
+    window.scrollTo(0,0);
+  }
+  window.addEventListener('hashchange',function(){mostrar(location.hash.slice(1));});
+  mostrar(location.hash.slice(1));
+})();
 </script>
 </body>
 </html>
