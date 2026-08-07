@@ -946,16 +946,16 @@ if(m&&h){m.addEventListener('scroll',function(){h.style.display='none';},{once:t
   };
 })();
 </script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./vendor/supabase.js"></script>
 <script>
 (function(){
-  var SB_URL = 'https://zyftjfwgveunyzlhqhgq.supabase.co';
-  var SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp5ZnRqZndndmV1bnl6bGhxaGdxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ2Mzk5NzYsImV4cCI6MjEwMDIxNTk3Nn0.Y4mI6vLMAAGBuMmI9gMZaz9s1h2TIUaT3SNcnTDAZDU';
+  var SB_URL = 'https://supabase.smartlinkdigital.com.br';
+  var SB_ANON = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzdXBhYmFzZSIsImlhdCI6MTc4NTUxNzkyMCwiZXhwIjo0OTQxMTkxNTIwLCJyb2xlIjoiYW5vbiJ9.e_HxdxeX9Aaxnf4-2kpYMSeNfyk5uJro-lyE9bu4EGk';
   var ZAP_DONO = '5521994564209';
   var sb = window.supabase.createClient(SB_URL, SB_ANON);
   var planoSel = null; // { id, nome, valor }
 
-  var API_BB = 'https://barberbook-smartlink.vercel.app';
+  var API_BB = 'https://agenda.smartlinkdigital.com.br';
   function passos(id){
     ['sa-cadastro','sa-cadastro-ok','sa-telefone','sa-pagamento'].forEach(function(p){
       document.getElementById(p).style.display = (p===id)?'':'none';

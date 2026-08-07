@@ -16,6 +16,7 @@ COPY index.html aplicativos.html automacoes.html sites.html \
 # Console deixa de ser verificada.
 COPY robots.txt sitemap.xml google7be0779074a45538.html /usr/share/nginx/html/
 
+COPY vendor    /usr/share/nginx/html/vendor
 COPY blog      /usr/share/nginx/html/blog
 COPY FOTOS     /usr/share/nginx/html/FOTOS
 COPY PARCEIROS /usr/share/nginx/html/PARCEIROS
