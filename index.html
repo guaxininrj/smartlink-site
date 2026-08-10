@@ -867,13 +867,13 @@ if(m&&h){m.addEventListener('scroll',function(){h.style.display='none';},{once:t
 </script>
 <script>
 (function(){
-  var API_BASE = 'https://codigo-mu.vercel.app';
+  var API_BASE = 'https://api.smartpersonal.smartlinkdigital.com.br/site';
   var pvMapa = {}; // nome normalizado (só letras/números) -> id do parceiro
   var pvAtual = { id: null, nome: null, empresa: null };
   // remove pontuação/espaços pra "TSSK" bater com "T.S.S.K." cadastrado no painel
   function pvNormalizar(s){ return (s || '').toUpperCase().replace(/[^A-Z0-9]/g, ''); }
 
-  fetch(API_BASE + '/api/parceiros-publico')
+  fetch(API_BASE + '/parceiros-publico')
     .then(function(r){ return r.json(); })
     .then(function(j){
       (j.parceiros || []).forEach(function(p){ pvMapa[pvNormalizar(p.empresa)] = p.id; });
@@ -903,7 +903,7 @@ if(m&&h){m.addEventListener('scroll',function(){h.style.display='none';},{once:t
     var erro = document.getElementById('pv-erro');
     if(!senha){ erro.textContent = 'Digite a senha.'; return; }
     erro.textContent = 'Verificando...';
-    fetch(API_BASE + '/api/parceiros-publico', {
+    fetch(API_BASE + '/parceiros-publico', {
       method: 'POST', headers: {'Content-Type':'application/json'},
       body: JSON.stringify({ id: pvAtual.id, senha: senha })
     }).then(function(r){ return r.json(); }).then(function(j){
@@ -930,7 +930,7 @@ if(m&&h){m.addEventListener('scroll',function(){h.style.display='none';},{once:t
     if(!telefone){ erro.textContent = 'Informa seu WhatsApp pra retorno.'; return; }
     if(!alteracoes){ erro.textContent = 'Descreve o que você quer alterar.'; return; }
     erro.textContent = 'Enviando...';
-    fetch(API_BASE + '/api/mensagens', {
+    fetch(API_BASE + '/mensagens', {
       method: 'POST', headers: {'Content-Type':'application/json'},
       body: JSON.stringify({
         telefone: telefone,

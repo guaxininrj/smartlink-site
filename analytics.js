@@ -1,5 +1,5 @@
 (function(){
-  var API = 'https://codigo-mu.vercel.app/api/analytics';
+  var API = 'https://api.smartpersonal.smartlinkdigital.com.br/site/analytics';
 
   var sessaoId = (function(){
     try{
