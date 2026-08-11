@@ -1531,10 +1531,10 @@ function plTocarBusca(aleatorio){
 }
 
 var PL_IMAGENS = {
-  PAGODE: 'https://smartlink-site.vercel.app/FOTOS/pagode-vip.png',
-  CIGANO: 'https://smartlink-site.vercel.app/FOTOS/cigano-vip.png',
-  HINOS: 'https://smartlink-site.vercel.app/FOTOS/hinos-vip.png',
-  SERTANEJO: 'https://smartlink-site.vercel.app/FOTOS/sertanejo-vip.png'
+  PAGODE: 'FOTOS/pagode-vip.png',
+  CIGANO: 'FOTOS/cigano-vip.png',
+  HINOS: 'FOTOS/hinos-vip.png',
+  SERTANEJO: 'FOTOS/sertanejo-vip.png'
 };
 var plCategoriaAberta = null;
 
@@ -1949,7 +1949,7 @@ function atualizarBadgeMensagens(){
 }
 
 function verificarNovasMensagens(){
-  fetch(MSG_API_URL + '/api/mensagens')
+  fetch(MSG_API_URL + '/mensagens')
     .then(function(r){ return r.json(); })
     .then(function(j){
       if(!j.sucesso) return;
@@ -2014,7 +2014,7 @@ function carregarMensagens(){
   status.textContent = '⏳ Carregando mensagens...';
   status.style.display = 'block';
 
-  fetch(baseUrl + '/api/mensagens')
+  fetch(baseUrl + '/mensagens')
     .then(function(r){ return r.json(); })
     .then(function(j){
       if(j.sucesso){
