@@ -518,33 +518,13 @@
       <img src="FOTOS/smart-agenda.png" alt="Smart Agenda VIP" />
       <p style="color:var(--verm-vivo);">Ver planos →</p>
     </div>
-    <div class="mini-plano">
-      <img src="FOTOS/gym.png" alt="Gym" />
-      <p>🚧 Em construção</p>
-    </div>
-    <div class="mini-plano">
-      <img src="FOTOS/menu.png" alt="Menu Digital" />
-      <p>🚧 Em construção</p>
-    </div>
     <div class="mini-plano" style="cursor:pointer;" onclick="alternarSmartPersonal()">
       <img src="FOTOS/personal.png" alt="Smart Personal" />
       <p style="color:var(--verm-vivo);">Ver mais →</p>
     </div>
-    <div class="mini-plano">
-      <img src="FOTOS/precifica.png" alt="Precifica" />
-      <p>🚧 Em construção</p>
-    </div>
-    <div class="mini-plano">
+    <div class="mini-plano" style="cursor:pointer;" onclick="alternarSmartSites()">
       <img src="FOTOS/sites.png" alt="Sites" />
-      <p>🚧 Em construção</p>
-    </div>
-    <div class="mini-plano">
-      <img src="FOTOS/zap.png" alt="Zap" />
-      <p>🚧 Em construção</p>
-    </div>
-    <div class="mini-plano">
-      <img src="FOTOS/cardio.png" alt="Cardio" />
-      <p>🚧 Em construção</p>
+      <p style="color:var(--verm-vivo);">Ver planos →</p>
     </div>
   </div>
 
@@ -666,6 +646,40 @@
         Já tenho conta — Entrar
       </a>
     </div>
+  </div>
+
+  <div id="smart-sites-detalhes" style="display:none;">
+    <h3 style="text-align:center;margin:0 0 6px;color:#fff;">Smart Sites</h3>
+    <p class="sub" style="margin-bottom:20px;">Site pronto, responsivo, no ar em poucos dias. Pagamento único, sem mensalidade.</p>
+    <div class="planos" style="max-width:720px;margin:0 auto;">
+      <div class="plano" style="cursor:pointer" onclick="ssComprar('Site 1 página', 19900)">
+        <span class="neon"></span>
+        <span class="glass"></span>
+        <h3>1 página</h3>
+        <div class="preco">a partir de<br>R$ 199,00</div>
+        <hr>
+        <ul>
+          <li>Site responsivo de uma página só</li>
+          <li>Botão de WhatsApp direto na página</li>
+          <li>Otimizado pra celular e computador</li>
+        </ul>
+        <span class="frase">Toque pra contratar →</span>
+      </div>
+      <div class="plano destaque" style="cursor:pointer" onclick="ssComprar('Site 5 páginas', 39900)">
+        <span class="neon"></span>
+        <span class="glass"></span>
+        <h3>5 páginas</h3>
+        <div class="preco">R$ 399,00</div>
+        <hr>
+        <ul>
+          <li>Site responsivo com até 5 páginas</li>
+          <li>Botão de WhatsApp direto no site</li>
+          <li>Otimizado pra celular e computador</li>
+        </ul>
+        <span class="frase">Toque pra contratar →</span>
+      </div>
+    </div>
+    <p class="sub" style="text-align:center;margin-top:16px;font-size:.8rem;">Depois de pagar, chama no WhatsApp que a gente já começa.</p>
   </div>
 </section>
 
@@ -812,6 +826,15 @@
   </div>
 </div>
 
+<div class="pv-veu" id="ss-veu">
+  <div class="pv-modal" style="text-align:center;">
+    <h3>Pagamento recebido! ✅</h3>
+    <p class="sub" id="ss-veu-sub" style="margin-bottom:20px;">Agora é só chamar no WhatsApp que a gente já começa o seu site.</p>
+    <a class="btn-cheio" id="ss-veu-zap" href="#" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;">Chamar no WhatsApp</a>
+    <button type="button" class="btn-fechar" onclick="document.getElementById('ss-veu').classList.remove('aberto')">Fechar</button>
+  </div>
+</div>
+
 <section id="contato" class="pagina cta">
   <h2>Vamos colocar seu negócio no digital?</h2>
   <p>Orçamento gratuito e sem compromisso — resposta no mesmo dia.</p>
@@ -841,6 +864,60 @@ function alternarSmartPersonal(){
   det.style.display=abrindo?'block':'none';
   if(abrindo) det.scrollIntoView({behavior:'smooth',block:'start'});
 }
+function alternarSmartSites(){
+  var det=document.getElementById('smart-sites-detalhes');
+  if(!det) return;
+  var abrindo=det.style.display==='none';
+  det.style.display=abrindo?'block':'none';
+  if(abrindo) det.scrollIntoView({behavior:'smooth',block:'start'});
+}
+</script>
+<script>
+(function(){
+  var SS_HANDLE = 'smarlink';
+  var SS_ZAP = '5521975312753';
+
+  // Toque pra contratar num dos planos do Smart Sites: gera um link de
+  // pagamento avulso na InfinitePay (mesma técnica já usada no Smart
+  // Personal — API pública da InfinitePay, só precisa da handle, sem
+  // chave nem backend) e manda a pessoa pra lá.
+  window.ssComprar = async function(nome, precoCentavos){
+    try{
+      var resp = await fetch('https://api.checkout.infinitepay.io/links', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({
+          handle: SS_HANDLE,
+          redirect_url: location.origin + location.pathname + '?sitespago=1&produto=' + encodeURIComponent(nome) + '#produtos',
+          order_nsu: 'smartsites-' + Date.now(),
+          items: [{ quantity: 1, price: precoCentavos, description: nome }]
+        })
+      });
+      var data = await resp.json();
+      if(!resp.ok || !data.url){ alert('Não foi possível gerar o pagamento. Tente novamente ou chame no WhatsApp.'); return; }
+      location.href = data.url;
+    }catch(e){
+      alert('Não foi possível gerar o pagamento. Tente novamente ou chame no WhatsApp.');
+    }
+  };
+
+  // Volta da InfinitePay: mostra a tela de "pagamento recebido" com o
+  // botão de WhatsApp — o pedido em si é combinado por lá, não tem
+  // liberação automática de nada (diferente do Smart Agenda/Personal,
+  // que têm conta própria).
+  var params = new URLSearchParams(location.search);
+  if(params.get('sitespago') === '1'){
+    var produto = params.get('produto') || 'meu site';
+    var msg = 'Olá! Acabei de pagar o ' + produto + ' pelo site da SMART LINK. Vamos começar?';
+    document.getElementById('ss-veu-sub').textContent = 'Agora é só chamar no WhatsApp que a gente já começa o seu ' + produto.toLowerCase() + '.';
+    document.getElementById('ss-veu-zap').href = 'https://wa.me/' + SS_ZAP + '?text=' + encodeURIComponent(msg);
+    document.getElementById('ss-veu').classList.add('aberto');
+    params.delete('sitespago');
+    params.delete('produto');
+    var novaUrl = location.pathname + (params.toString() ? '?' + params.toString() : '') + '#produtos';
+    history.replaceState({}, '', novaUrl);
+  }
+})();
 </script>
 <script>
 (function(){var m=document.getElementById('menu'),h=document.querySelector('.nav-hint');
