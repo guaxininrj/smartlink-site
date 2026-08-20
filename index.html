@@ -526,9 +526,9 @@
       <img src="FOTOS/menu.png" alt="Menu Digital" />
       <p>🚧 Em construção</p>
     </div>
-    <div class="mini-plano">
-      <img src="FOTOS/personal.png" alt="Personal" />
-      <p>🚧 Em construção</p>
+    <div class="mini-plano" style="cursor:pointer;" onclick="alternarSmartPersonal()">
+      <img src="FOTOS/personal.png" alt="Smart Personal" />
+      <p style="color:var(--verm-vivo);">Ver mais →</p>
     </div>
     <div class="mini-plano">
       <img src="FOTOS/precifica.png" alt="Precifica" />
@@ -650,6 +650,22 @@
       <span class="frase">Toque pra contratar →</span>
     </div>
   </div>
+  </div>
+
+  <div id="smart-personal-detalhes" style="display:none;">
+    <h3 style="text-align:center;margin:0 0 6px;color:#fff;">Smart Personal</h3>
+    <p class="sub" style="margin-bottom:2px;">App de treino pra quem malha por conta própria — monta o plano de treino, acompanha peso e medidas, e cronometra descanso entre séries.</p>
+    <p class="sub" style="margin-bottom:20px;">7 dias grátis pra testar. Depois, R$ 9,90/mês.</p>
+    <div style="max-width:520px;margin:0 auto 26px;text-align:center;">
+      <a class="btn-zap" style="background:var(--verm);box-shadow:0 0 22px rgba(216,31,38,.45),0 12px 30px rgba(0,0,0,.6);" href="https://coliseupersonal.smartlinkdigital.com.br" target="_blank" rel="noopener">
+        <span class="neon"></span>
+        Criar minha conta grátis
+      </a>
+      <a class="btn-zap" href="https://coliseupersonal.smartlinkdigital.com.br" target="_blank" rel="noopener" style="margin-left:10px;">
+        <span class="neon neon-verde"></span>
+        Já tenho conta — Entrar
+      </a>
+    </div>
   </div>
 </section>
 
@@ -813,6 +829,13 @@ CNPJ 67.179.020/0001-42 — Rio de Janeiro/RJ</footer>
 <script>
 function alternarSmartAgenda(){
   var det=document.getElementById('smart-agenda-detalhes');
+  if(!det) return;
+  var abrindo=det.style.display==='none';
+  det.style.display=abrindo?'block':'none';
+  if(abrindo) det.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function alternarSmartPersonal(){
+  var det=document.getElementById('smart-personal-detalhes');
   if(!det) return;
   var abrindo=det.style.display==='none';
   det.style.display=abrindo?'block':'none';
